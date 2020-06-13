@@ -2,57 +2,42 @@
 
 int main()
 {
-    int a[10][10],b[10][10],c[10][10],sum=0;
-    int m,n,p,q,i,j,k;
-    int *p1,*p2,*p3;
-    p1=a;
-    p2=b;
-    p3=c;
+	int matrix1[20][20], matrix2[20][20], product[20][20];
+	int *p1, *p2, *prod, m, n, p, q, d, e, f;
+	p1= &matrix1[0][0];
+	p2= &matrix2[0][0];
+	prod= &product[0][0];
 
-    printf("Enter no of row and column for 1st matrix\n");
-    scanf("%d%d",&m,&n);
-    printf("Enter no of row and column for 2nd matrix\n");
-    scanf("%d%d",&p,&q);
-
-    if(n==p)
-    {
-        printf("For 1st matrix\n");
-        for(i=0;i<m;i++)
-            for(j=0;j<n;j++)
-            {
-                printf("a[%d][%d]=",i,j);
-                scanf("%d",p1+i*10+j);
-            }
-
-        printf("\nFor 2nd matrix\n");
-        for(i=0;i<p;i++)
-            for(j=0;j<q;j++)
-            {
-                printf("b[%d][%d]=",i,j);
-                scanf("%d",ptr2+i*10+j);
-            }
-
-
-        for(i=0;i<m;i++)
-        {
-            for(j=0;j<q;j++)
-            {
-               for(k=0;k<q;k++)
-                 sum+=*(p1+i*10+k)**(p2+k*10+j);
-            *(p3+i*10+j)=sum;
-            sum=0;
-            }
-        }
-
-        printf("Product of entered matrices :-\n");
-        for(i=0;i<m;i++)
-        {
-            for(j=0;j<q;j++)
-                printf("%d\t",*(p3+i*10+j));
-            printf("\n");
-        }
-    }
-    else
-    printf("Multiplication is not possible");
-    return 0;
+	printf("\nEnter the size (no of rows and columns) for 1st matrix :\n");
+	scanf("%d %d", &m, &n);
+	printf("\nEnter the size (no of rows and columns) for 2nd matrix :\n");
+	scanf("%d %d", &p, &q);
+	if(n==p)
+	{
+		printf("\nEnter the 1st matrix elements : \n");
+		for(d=1;d<=m;++d)
+			for(e=1;e<=n;++e)
+				scanf("%d",p1+d*20+e);
+		printf("\nEnter the 2nd matrix elements : \n\n");
+		for(d=1;d<=p;++d)
+			for(e=1;e<=q;++e)
+				scanf("%d",p2+d*20+e);
+		for(d=1;d<=m;++d)
+			for(e=1;e<=q;++e)
+				*(prod+d*20+e) = 0;
+		for(d=1;d<=m;++d)
+			for(e=1;e<=q;++e)
+				for(f=1;f<=n;++f)
+					*(prod+d*20+e) += *(p1+d*20+f) * *(p2+f*20+e);
+		printf("\n\nThe Product of two matrices using Pointer is . . . \n\n");
+		for(d=1;d<=m;++d){
+			for(e=1;e<=q;++e)
+				printf("\t %d", *(prod+d*20+e));
+				printf("\n\n");
+		}
+	}
+	else
+	printf("\nThe Matrix sizes are not compatible for multiplication !!");
+	getch();
+	return 0;
 }
