@@ -1,26 +1,34 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <string.h>
-
+ 
 int main()
 {
-   char str[100];
-   int i = 0, count[26] = {0}, x;
-
-   printf("Enter the  string\n");
-   gets(str);
-
-   while (*(str+i) != '\0') {
-
-      if (*(str+i) >= 'a' && *(str+i) <= 'z') {
-         x = *(str+i) - 'a';
-         (*(count+x))++;
-      }
-
-      i++;
-   }
-
-   for (i = 0; i < 26; i++)
-         printf("%c occurs %d times in the string.\n", i + 'a', *(count+i));
-
-   return 0;
+	char s[1000];  
+	int count=0, len;
+ 	printf("Enter  the string : ");
+	gets(s);
+	int i=0;     
+	while((*(s+i))!='\0')
+	{
+		i++;	
+	}
+	len=i;
+	printf("Frequency count character in string:\n");
+ 	for(int i=0; i<len; i++)  
+	{
+		count=1;
+		if(*(s+i))
+		{
+			for(int j=i+1;j<len;j++)  
+			{   
+				if((*(s+i))==(*(s+j)))
+				{
+					count++;
+					(*(s+j))='\0';
+				}
+			}  
+			printf("'%c' = %d\n", (*(s+i)), count);
+		}
+	}
+	return 0;
 }
